@@ -6,18 +6,18 @@ On top of the data are 20 business questions, such as which product categories e
 
 The database has 13 tables covering 2024 to 2025:
 
-Table	                                                                        What it stores	                                           
-suppliers	                                                                    who we buy from	                                            
-products	                                                                     what we sell	                                            
-warehouses	                                                                where stock is kept	                                      
-carriers	                                                                  delivery companies	                                                                                    
-employees	                                                               staff and who reports to whom	                                                                           
-customers	                                                                     who buys from us	                                                                                      
-inventory	                                                                 stock in each warehouse	                                                                                
-purchase_orders / po_items	                                              what we buy from suppliers	                                                       
-sales_orders / order_items	                                                 what customers buy	                                                             
-shipments	                                                                 deliveries to customers	                                                                               
-returns	                                                                      items sent back	                                                                                           
+Table	                                                      
+suppliers                                       
+products                                            
+warehouses	                                     
+carriers	                                                                                                                                               
+employees	                                                                                                                                        
+customers	                                                                                                                                                          
+inventory	                                                             
+purchase_orders / po_items	                                             	                                                       
+sales_orders / order_items	                                                	                                                             
+shipments	                                                                                                                                              
+returns	                                                                                                                                                            
 
 Questions I solved
 #	Question	                                                                    What I practiced
@@ -32,17 +32,3 @@ Questions I solved
 19	Warehouse stock flow and org chart	                                  views, recursive CTE
 20	Updating data, transactions, indexes	                               UPDATE, DELETE, COMMIT, EXPLAIN
 
-Mistakes I made (and what I learned) 🙈
-
-Honestly, I got a lot of red error marks. Here are the main ones so I don't repeat them:
-
-Typos in column names - I wrote dicount_pct instead of discount_pct and price instead of unit_price. Now I check the column names in the Schemas panel first.
-Brackets in a long formula- My margin % kept failing because I closed a bracket too early. I learned to count: +1 for every ( and -1 for every ), and it should end at 0. Clicking next to a bracket in Workbench highlights its partner.
-Division before subtraction-100*SUM(rev) - SUM(cost) / SUM(rev) gives the wrong answer. It needs brackets: 100 * (rev - cost) / rev.
-Forgot a table alias. I wrote so.order_id but never wrote sales_orders so in the JOIN.
-A stray comma- One extra comma before INTERSECT made the whole query red.
-Missing comma between columns and a . typed instead of , inside ROUND(...).
-= NULL doesn't work. You have to write IS NULL.
-Joining header and line tables inflates numbers- Orders have many lines, so I learned to use COUNT(DISTINCT order_id) and to total the lines first before joining.
-
-My debugging tricks now: hover over the red mark, build the query in small steps, and run it often.
